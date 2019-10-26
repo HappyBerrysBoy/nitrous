@@ -105,12 +105,16 @@ class Author extends React.Component {
             : {};
 
         const AffiliationMap = {};
+        const AnotherAffiliationMap = {};
+        const HeadAffiliationMap = {};
         if (affiliationDb) {
             for (let i = 0; i < affiliationDb.size; i++) {
                 AffiliationMap[
                     affiliationDb.get(i).get('account')
                 ] = affiliationDb.get(i).get('title');
             }
+            HeadAffiliationMap['happyberrysboy'] = '나는';
+            AnotherAffiliationMap['happyberrysboy'] = '가 아니었습니다!!';
         }
 
         if (!(follow || mute) || username === author) {
@@ -125,9 +129,19 @@ class Author extends React.Component {
                         <Link to={'/@' + author}>{author}</Link>
                     </strong>{' '}
                     <Reputation value={authorRepLog10} />
+                    {HeadAffiliationMap && HeadAffiliationMap[author] ? (
+                        <span className="affiliation header">
+                            {HeadAffiliationMap[author]}
+                        </span>
+                    ) : null}
                     {showAffiliation && AffiliationMap[author] ? (
                         <span className="affiliation">
                             {AffiliationMap[author]}
+                        </span>
+                    ) : null}
+                    {AnotherAffiliationMap && AnotherAffiliationMap[author] ? (
+                        <span className="affiliation other">
+                            {AnotherAffiliationMap[author]}
                         </span>
                     ) : null}
                 </span>
@@ -150,9 +164,21 @@ class Author extends React.Component {
                             to={'/@' + author}
                         >
                             {author} <Reputation value={authorRepLog10} />
+                            {HeadAffiliationMap &&
+                            HeadAffiliationMap[author] ? (
+                                <span className="affiliation header">
+                                    {HeadAffiliationMap[author]}
+                                </span>
+                            ) : null}
                             {showAffiliation && AffiliationMap[author] ? (
                                 <span className="affiliation">
                                     {AffiliationMap[author]}
+                                </span>
+                            ) : null}
+                            {AnotherAffiliationMap &&
+                            AnotherAffiliationMap[author] ? (
+                                <span className="affiliation other">
+                                    {AnotherAffiliationMap[author]}
                                 </span>
                             ) : null}
                             <Icon name="dropdown-arrow" />

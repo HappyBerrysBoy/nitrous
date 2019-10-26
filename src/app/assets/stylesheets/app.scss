@@ -227,3 +227,17 @@ a[rel="nofollow noopener"]:after {
     color: themed('buttonText');
   }
 }
+
+.affiliation.other {
+  @include themify($themes) {
+    background-color: #dc5e5e;
+    color: themed('buttonText');
+  }
+}
+
+.affiliation.header {
+  @include themify($themes) {
+    background-color: #78c778;
+    color: themed('buttonText');
+  }
+}
